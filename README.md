@@ -4,7 +4,7 @@ babel-standalone
 babel-standalone is a standalone build of Babel for use in non-Node.js environments, including browsers. It's bundled with all the standard Babel plugins and presets.
 
 But why?!
----------
+=========
 
 It's true that using Babel through Webpack, Browserify or Gulp should be sufficient for most use cases. However, there are some valid use cases for babel-standalone:
 
@@ -14,7 +14,7 @@ It's true that using Babel through Webpack, Browserify or Gulp should be suffici
   - Integration of Babel into a non-Node.js environment ([ReactJS.NET](http://reactjs.net/), [ruby-babel-transpiler](https://github.com/babel/ruby-babel-transpiler), [php-babel-transpiler](https://github.com/talyssonoc/php-babel-transpiler), etc).
 
 Installation
-------------
+============
 
 babel-standalone can be installed via NPM:
 ```
@@ -24,7 +24,7 @@ npm install --save babel-standalone
 Or grab `babel.js` and/or `babel.min.js` from the [GitHub releases page](https://github.com/Daniel15/babel-standalone/releases)
 
 Usage
------
+=====
 
 Load `babel.js` or `babel.min.js` in your environment. This will expose [Babel's API](http://babeljs.io/docs/usage/api/) in a `Babel` object:
 
@@ -34,3 +34,15 @@ var output = Babel.transform(input, { presets: ['es2015'] }).code;
 ```
 
 Note that `.babelrc` doesn't work in babel-standalone, as no file system access is available. The presets and/or plugins to use **must** be specified in the options passed to `Babel.transform`.
+
+Changelog
+=========
+6.4.4 - 17th January 2016
+-------------------------
+ - Made version number consistent with Babel's.
+ - [#2](https://github.com/Daniel15/babel-standalone/issues/2) - Added
+   2015-loose preset.
+
+1.0 - 5th December 2015
+-----------------------
+ - Initial release.
