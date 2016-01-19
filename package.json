@@ -43,7 +43,7 @@
     "babel-plugin-transform-es2015-instanceof": "^6.4.0",
     "babel-plugin-transform-es2015-literals": "^6.3.13",
     "babel-plugin-transform-es2015-modules-amd": "^6.4.3",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.4.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.4.5",
     "babel-plugin-transform-es2015-modules-systemjs": "^6.4.0",
     "babel-plugin-transform-es2015-modules-umd": "^6.4.3",
     "babel-plugin-transform-es2015-object-super": "^6.4.0",
