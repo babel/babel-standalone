@@ -3,6 +3,10 @@
   "version": "6.4.5-dev",
   "description": "Standalone build of Babel for use in non-Node.js environments. Similar to the (now deprecacted) babel-browser",
   "main": "babel.js",
+  "scripts": {
+    "build": "gulp build",
+    "test": "mocha"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Daniel15/babel-standalone.git"
@@ -93,10 +97,12 @@
     "babel-preset-stage-1": "^6.3.13",
     "babel-preset-stage-2": "^6.3.13",
     "babel-preset-stage-3": "^6.3.13",
+    "expect.js": "^0.3.1",
     "gulp": "^3.9.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.1",
     "json-loader": "^0.5.4",
+    "mocha": "^2.3.4",
     "react": "^0.14.6",
     "webpack": "^1.12.11",
     "webpack-stream": "^3.1.0"
