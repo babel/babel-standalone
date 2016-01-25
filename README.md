@@ -20,6 +20,7 @@ There are several ways to get a copy of babel-standalone. Pick whichever one you
 
 - Use it via CDNJS: https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js. This is a simple way to embed it on a webpage without having to do any other setup.
 - Install via NPM: `npm install --save babel-standalone`
+- Install it via Bower `bower install --save babel-standalone-bower`, `babel.js` and `babel.min.js` are located in `bower_components/bower-standalone-bower`
 - Manually grab `babel.js` and/or `babel.min.js` from the [GitHub releases page](https://github.com/Daniel15/babel-standalone/releases). Every release includes these files.
 
 Usage

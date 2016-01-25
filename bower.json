@@ -1,0 +1,26 @@
+{
+  "name": "babel-standalone",
+  "description": "Standalone build of Babel for use in non-Node.js environments. Similar to the (now deprecacted) babel-browser",
+  "main": "babel.js",
+  "authors": [
+    "Daniel Lo Nigro <daniel@dan.cx> (http://dan.cx/)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "babel",
+    "babeljs",
+    "6to5",
+    "transpile",
+    "transpiler"
+  ],
+  "homepage": "https://github.com/Daniel15/babel-standalone",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "src",
+    "gulpfile.js"
+  ]
+}
