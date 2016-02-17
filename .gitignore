@@ -1,6 +1,9 @@
 babel.js
 babel.min.js
 
+/JSXTransformer.js
+/JSXTransformer.min.js
+
 # Logs
 logs
 *.log

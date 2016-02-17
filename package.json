@@ -4,7 +4,7 @@
   "description": "Standalone build of Babel for use in non-Node.js environments. Similar to the (now deprecacted) babel-browser",
   "main": "babel.js",
   "scripts": {
-    "build": "gulp build",
+    "build": "gulp",
     "test": "mocha"
   },
   "repository": {
@@ -104,6 +104,7 @@
     "json-loader": "^0.5.4",
     "mocha": "^2.3.4",
     "react": "^0.14.6",
+    "rx-dom": "^7.0.3",
     "webpack": "^1.12.11",
     "webpack-stream": "^3.1.0"
   },
