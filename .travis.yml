@@ -2,5 +2,5 @@ language: node_js
 node_js:
   - "stable"
 script:
-  - ./node_modules/.bin/gulp build
+  - npm run build
   - npm test
