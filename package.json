@@ -2,18 +2,17 @@
   "name": "babel-standalone",
   "version": "6.4.5-dev",
   "description": "Standalone build of Babel for use in non-Node.js environments. Similar to the (now deprecacted) babel-browser",
-  "main": "babel.js",
+  "main": "lib/index.js",
   "scripts": {
-    "build": "gulp build",
+    "build": "babel --out-dir lib src && gulp build",
     "test": "mocha"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Daniel15/babel-standalone.git"
   },
-  "devDependencies": {
+  "dependencies": {
     "babel-core": "^6.4.5",
-    "babel-loader": "^6.2.1",
     "babel-plugin-check-es2015-constants": "^6.3.13",
     "babel-plugin-external-helpers-2": "^6.3.13",
     "babel-plugin-syntax-async-functions": "^6.3.13",
@@ -96,7 +95,10 @@
     "babel-preset-stage-0": "^6.3.13",
     "babel-preset-stage-1": "^6.3.13",
     "babel-preset-stage-2": "^6.3.13",
-    "babel-preset-stage-3": "^6.3.13",
+    "babel-preset-stage-3": "^6.3.13"
+  },
+  "devDependencies": {
+    "babel-cli": "6.5.1",
     "expect.js": "^0.3.1",
     "gulp": "^3.9.0",
     "gulp-rename": "^1.2.2",

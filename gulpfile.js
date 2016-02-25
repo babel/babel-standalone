@@ -6,18 +6,10 @@ var uglify = require('gulp-uglify');
 
 gulp.task('default', ['build']);
 gulp.task('build', function() {
-  return gulp.src('src/index.js')
+  return gulp.src('lib/index.js')
     .pipe(webpackStream({
       module: {
         loaders: [
-          {
-            exclude: /node_modules/,
-            test: /\.js$/,
-            loader: 'babel',
-            query: {
-              presets: ['es2015', 'stage-0']
-            }
-          },
           {
             test: /\.json$/,
             loader: 'json'
