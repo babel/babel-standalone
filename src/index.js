@@ -70,6 +70,7 @@ export const availablePlugins = {
   'transform-class-constructor-call': require('babel-plugin-transform-class-constructor-call'),
   'transform-class-properties': require('babel-plugin-transform-class-properties'),
   'transform-decorators': require('babel-plugin-transform-decorators'),
+  'transform-decorators-legacy': require('babel-plugin-transform-decorators-legacy').default, // <- No clue. Nope.
   'transform-do-expressions': require('babel-plugin-transform-do-expressions'),
   'transform-es2015-arrow-functions': require('babel-plugin-transform-es2015-arrow-functions'),
   'transform-es2015-block-scoped-functions': require('babel-plugin-transform-es2015-block-scoped-functions'),
