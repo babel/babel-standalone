@@ -7,6 +7,10 @@
     "build": "gulp build",
     "test": "mocha"
   },
+  "files": [
+    "babel.js",
+    "babel.min.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Daniel15/babel-standalone.git"
