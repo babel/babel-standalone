@@ -9,7 +9,8 @@
   },
   "files": [
     "babel.js",
-    "babel.min.js"
+    "babel.min.js",
+    "src"
   ],
   "repository": {
     "type": "git",
