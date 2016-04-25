@@ -41,6 +41,11 @@ gulp.task('build', function() {
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': '"production"'
         }),
+        // Use browser version of visionmedia-debug
+        new webpack.NormalModuleReplacementPlugin(
+          /debug\/node/,
+          'debug/browser'
+        ),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.DedupePlugin()
       ]
