@@ -34,8 +34,7 @@ gulp.task('build', function() {
       output: {
         filename: 'babel.js',
         library: 'Babel',
-        libraryTarget: 'umd',
-        pathinfo: true,
+        libraryTarget: 'umd'
       },
       plugins: [
         new webpack.DefinePlugin({

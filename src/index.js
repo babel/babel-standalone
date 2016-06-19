@@ -1,5 +1,7 @@
 import * as Babel from 'babel-core';
 
+import {runScripts} from './transformScriptTags';
+
 /**
  * Parses plugin names and presets from the specified options.
  */
@@ -193,3 +195,9 @@ export const availablePresets = {
 };
 
 export const version = Babel.version;
+
+// Listen for load event if we're in a browser and then kick off finding and
+// running of scripts with "text/babel" type.
+if (typeof window !== 'undefined' && window !== null && window.addEventListener !== null) {
+  window.addEventListener('DOMContentLoaded', () => runScripts(transform), false);
+}
