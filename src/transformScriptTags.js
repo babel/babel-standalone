@@ -181,7 +181,7 @@ export function runScripts(transformFn) {
 
   console.warn(
     'You are using the in-browser Babel transformer. Be sure to precompile ' +
-    'your scrips for production - https://babeljs.io/docs/setup/'
+    'your scripts for production - https://babeljs.io/docs/setup/'
   );
 
   loadScripts(transformFn, jsxScripts);
