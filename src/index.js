@@ -46,7 +46,7 @@ export function transform(code, options) {
 }
 
 export function transformFromAst(ast, code, options) {
-  return Babel.transformFromAst(code, processOptions(options));
+  return Babel.transformFromAst(ast, code, processOptions(options));
 }
 
 // All the plugins we should bundle
