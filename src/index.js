@@ -166,8 +166,7 @@ export const availablePresets = {
     ]
   },
 
-  // ES2015 preset with plugins set to loose mode and es2015-modules-commonjs
-  // removed.
+  // ES2015 preset with plugins set to loose mode.
   // Based off https://github.com/bkonkle/babel-preset-es2015-loose/blob/master/index.js
   'es2015-loose': {
     plugins: [
@@ -179,6 +178,7 @@ export const availablePresets = {
       [require("babel-plugin-transform-es2015-classes"), { loose: true }],
       require("babel-plugin-transform-es2015-object-super"),
       require("babel-plugin-transform-es2015-shorthand-properties"),
+      require("babel-plugin-transform-es2015-duplicate-keys"),
       [require("babel-plugin-transform-es2015-computed-properties"), { loose: true }],
       [require("babel-plugin-transform-es2015-for-of"), { loose: true }],
       require("babel-plugin-transform-es2015-sticky-regex"),
@@ -189,6 +189,7 @@ export const availablePresets = {
       [require("babel-plugin-transform-es2015-destructuring"), { loose: true }],
       require("babel-plugin-transform-es2015-block-scoping"),
       require("babel-plugin-transform-es2015-typeof-symbol"),
+      [require("babel-plugin-transform-es2015-modules-commonjs"), { loose: true }],
       [require("babel-plugin-transform-regenerator"), { async: false, asyncGenerators: false }],
     ]
   },
