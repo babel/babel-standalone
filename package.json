@@ -110,7 +110,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.3",
     "json-loader": "^0.5.4",
-    "mocha": "^2.5.3",
+    "mocha": "^3.0.0",
     "npm-check-updates": "^2.7.0",
     "react": "^15.1.0",
     "semver-compare": "^1.0.0",
