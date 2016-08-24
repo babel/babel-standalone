@@ -34,7 +34,7 @@ var input = 'const getMessage = () => "Hello World";';
 var output = Babel.transform(input, { presets: ['es2015'] }).code;
 ```
 
-When loaded in a browser, babel-standalone will automatically compile and execute all script tags with `text/babel` type:
+When loaded in a browser, babel-standalone will automatically compile and execute all script tags with type `text/babel` or `text/jsx`:
 ```html
 <div id="output"></div>
 <!-- Load Babel -->
