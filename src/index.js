@@ -27,16 +27,21 @@ function processOptions(options) {
 
   // Parse plugin names
   const plugins = (options.plugins || []).map(pluginName => {
-    if (typeof pluginName === 'string') {
-      var plugin = availablePlugins[pluginName];
-      if (!plugin) {
-        throw new Error(`Invalid plugin specified in Babel options: "${pluginName}"`);
-      }
-      return plugin;
+    let plugin;
+    
+    if (pluginName instanceof Array && typeof pluginName[0] === 'string') {
+      plugin = [availablePlugins[pluginName[0]]].concat(pluginName.slice(1));
+    } if (typeof pluginName === 'string') {
+      plugin = availablePlugins[pluginName];
     } else {
       // Could be an actual plugin module
       return pluginName;
     }
+    
+    if (!plugin) {
+      throw new Error(`Invalid plugin specified in Babel options: "${pluginName}"`);
+    }
+    return plugin;
   });
 
   return {
