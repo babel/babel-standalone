@@ -13,6 +13,13 @@ function processOptions(options) {
     if (presetName instanceof Array && typeof presetName[0] === 'string') {
       if (presetName[0] in availablePresets) {
         preset = [availablePresets[presetName[0]]].concat(presetName.slice(1));
+
+        // workaround for babel issue
+        // at some point, babel copies the preset, losing the non-enumerable
+        // buildPreset key; convert it into an enumerable key.
+        if (typeof preset[0] === 'object' && 'buildPreset' in preset[0]) {
+          preset[0] = { ...preset[0], buildPreset: preset[0].buildPreset }
+        }
       }
     } else if (typeof presetName === 'string') {
       preset = availablePresets[presetName];
@@ -30,7 +37,7 @@ function processOptions(options) {
   // Parse plugin names
   const plugins = (options.plugins || []).map(pluginName => {
     let plugin = null;
-    
+
     if (pluginName instanceof Array && typeof pluginName[0] === 'string') {
       if (pluginName[0] in availablePlugins) {
         plugin = [availablePlugins[pluginName[0]]].concat(pluginName.slice(1));
@@ -41,7 +48,7 @@ function processOptions(options) {
       // Could be an actual plugin module
       return pluginName;
     }
-    
+
     if (!plugin) {
       throw new Error(`Invalid plugin specified in Babel options: "${pluginName}"`);
     }
