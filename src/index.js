@@ -8,16 +8,21 @@ import {runScripts} from './transformScriptTags';
 function processOptions(options) {
   // Parse preset names
   const presets = (options.presets || []).map(presetName => {
-    if (typeof presetName === 'string') {
-      var preset = availablePresets[presetName];
-      if (!preset) {
-        throw new Error(`Invalid preset specified in Babel options: "${presetName}"`);
-      }
-      return preset;
+    let preset;
+
+    if (presetName instanceof Array && typeof presetName[0] === 'string') {
+      preset = [availablePresets[presetName[0]]].concat(presetName.slice(1));
+    } else if (typeof presetName === 'string') {
+      preset = availablePresets[presetName];
     } else {
       // Could be an actual preset module
       return presetName;
     }
+
+    if (!preset) {
+      throw new Error(`Invalid preset specified in Babel options: "${presetName}"`);
+    }
+    return preset;
   });
 
   // Parse plugin names
