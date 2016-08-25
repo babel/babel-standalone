@@ -60,6 +60,16 @@ describe('babel-standalone', () => {
     );
   });
 
+  it('handles presets with options', () => {
+    const output = Babel.transform(
+      'export let x',
+      {presets: [['es2015', { modules: false }]]}
+    ).code;
+    expect(output).to.be(
+      'export var x = void 0;'
+    )
+  });
+
   it('handles specifying a plugin by name', () => {
     const output = Babel.transform(
       'const getMessage = () => "Hello World"',
