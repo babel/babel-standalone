@@ -8,10 +8,12 @@ import {runScripts} from './transformScriptTags';
 function processOptions(options) {
   // Parse preset names
   const presets = (options.presets || []).map(presetName => {
-    let preset;
+    let preset = null;
 
     if (presetName instanceof Array && typeof presetName[0] === 'string') {
-      preset = [availablePresets[presetName[0]]].concat(presetName.slice(1));
+      if (presetName[0] in availablePresets) {
+        preset = [availablePresets[presetName[0]]].concat(presetName.slice(1));
+      }
     } else if (typeof presetName === 'string') {
       preset = availablePresets[presetName];
     } else {
@@ -27,10 +29,12 @@ function processOptions(options) {
 
   // Parse plugin names
   const plugins = (options.plugins || []).map(pluginName => {
-    let plugin;
+    let plugin = null;
     
     if (pluginName instanceof Array && typeof pluginName[0] === 'string') {
-      plugin = [availablePlugins[pluginName[0]]].concat(pluginName.slice(1));
+      if (pluginName[0] in availablePlugins) {
+        plugin = [availablePlugins[pluginName[0]]].concat(pluginName.slice(1));
+      }
     } if (typeof pluginName === 'string') {
       plugin = availablePlugins[pluginName];
     } else {
