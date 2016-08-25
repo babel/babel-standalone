@@ -42,7 +42,7 @@ function processOptions(options) {
       if (pluginName[0] in availablePlugins) {
         plugin = [availablePlugins[pluginName[0]]].concat(pluginName.slice(1));
       }
-    } if (typeof pluginName === 'string') {
+    } else if (typeof pluginName === 'string') {
       plugin = availablePlugins[pluginName];
     } else {
       // Could be an actual plugin module

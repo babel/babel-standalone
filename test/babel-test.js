@@ -83,6 +83,16 @@ describe('babel-standalone', () => {
     );
   });
 
+  it('handles plugins with options', () => {
+    const output = Babel.transform(
+      '`${x}`',
+      {plugins: [['transform-es2015-template-literals', {spec: true}]]}
+    ).code;
+    expect(output).to.be(
+      '"" + String(x);'
+    );
+  })
+
   it('throws on invalid preset name', () => {
     expect(
       () => Babel.transform('var foo', {presets: ['lolfail']})
