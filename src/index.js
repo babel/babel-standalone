@@ -2,36 +2,57 @@ import * as Babel from 'babel-core';
 
 import {runScripts} from './transformScriptTags';
 
+const isArray = Array.isArray || (arg => Object.prototype.toString.call(arg) === '[object Array]');
+
+/**
+ * Loads the given name (or [name, options] pair) from the given table object
+ * holding the available presets or plugins.
+ *
+ * Returns undefined if the preset or plugin is not available; passes through
+ * name unmodified if it (or the first element of the pair) is not a string.
+ */
+function loadBuiltin(builtinTable, name) {
+  if (isArray(name) && typeof name[0] === 'string') {
+    if (builtinTable.hasOwnProperty(name[0])) {
+      return [builtinTable[name[0]]].concat(name.slice(1));
+    }
+    return;
+  } else if (typeof name === 'string') {
+    return builtinTable[name];
+  }
+  // Could be an actual preset/plugin module
+  return name;
+}
+
 /**
  * Parses plugin names and presets from the specified options.
  */
 function processOptions(options) {
   // Parse preset names
   const presets = (options.presets || []).map(presetName => {
-    if (typeof presetName === 'string') {
-      var preset = availablePresets[presetName];
-      if (!preset) {
-        throw new Error(`Invalid preset specified in Babel options: "${presetName}"`);
+    const preset = loadBuiltin(availablePresets, presetName);
+
+    if (preset) {
+      // workaround for babel issue
+      // at some point, babel copies the preset, losing the non-enumerable
+      // buildPreset key; convert it into an enumerable key.
+      if (isArray(preset) && typeof preset[0] === 'object' && preset[0].hasOwnProperty('buildPreset')) {
+        preset[0] = { ...preset[0], buildPreset: preset[0].buildPreset }
       }
-      return preset;
     } else {
-      // Could be an actual preset module
-      return presetName;
+      throw new Error(`Invalid preset specified in Babel options: "${presetName}"`);
     }
+    return preset;
   });
 
   // Parse plugin names
   const plugins = (options.plugins || []).map(pluginName => {
-    if (typeof pluginName === 'string') {
-      var plugin = availablePlugins[pluginName];
-      if (!plugin) {
-        throw new Error(`Invalid plugin specified in Babel options: "${pluginName}"`);
-      }
-      return plugin;
-    } else {
-      // Could be an actual plugin module
-      return pluginName;
+    const plugin = loadBuiltin(availablePlugins, pluginName);
+
+    if (!plugin) {
+      throw new Error(`Invalid plugin specified in Babel options: "${pluginName}"`);
     }
+    return plugin;
   });
 
   return {
