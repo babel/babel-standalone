@@ -2,33 +2,44 @@ import * as Babel from 'babel-core';
 
 import {runScripts} from './transformScriptTags';
 
+const isArray = Array.isArray || (arg => Object.prototype.toString.call(arg) === '[object Array]');
+
+/**
+ * Loads the given name (or [name, options] pair) from the given table object
+ * holding the available presets or plugins.
+ *
+ * Returns undefined if the preset or plugin is not available; passes through
+ * name unmodified if it (or the first element of the pair) is not a string.
+ */
+function loadBuiltin(builtinTable, name) {
+  if (isArray(name) && typeof name[0] === 'string') {
+    if (builtinTable.hasOwnProperty(name[0])) {
+      return [builtinTable[name[0]]].concat(name.slice(1));
+    }
+    return;
+  } else if (typeof name === 'string') {
+    return builtinTable[name];
+  }
+  // Could be an actual preset/plugin module
+  return name;
+}
+
 /**
  * Parses plugin names and presets from the specified options.
  */
 function processOptions(options) {
   // Parse preset names
   const presets = (options.presets || []).map(presetName => {
-    let preset = null;
+    const preset = loadBuiltin(availablePresets, presetName);
 
-    if (presetName instanceof Array && typeof presetName[0] === 'string') {
-      if (presetName[0] in availablePresets) {
-        preset = [availablePresets[presetName[0]]].concat(presetName.slice(1));
-
-        // workaround for babel issue
-        // at some point, babel copies the preset, losing the non-enumerable
-        // buildPreset key; convert it into an enumerable key.
-        if (typeof preset[0] === 'object' && 'buildPreset' in preset[0]) {
-          preset[0] = { ...preset[0], buildPreset: preset[0].buildPreset }
-        }
+    if (preset) {
+      // workaround for babel issue
+      // at some point, babel copies the preset, losing the non-enumerable
+      // buildPreset key; convert it into an enumerable key.
+      if (isArray(preset) && typeof preset[0] === 'object' && preset[0].hasOwnProperty('buildPreset')) {
+        preset[0] = { ...preset[0], buildPreset: preset[0].buildPreset }
       }
-    } else if (typeof presetName === 'string') {
-      preset = availablePresets[presetName];
     } else {
-      // Could be an actual preset module
-      return presetName;
-    }
-
-    if (!preset) {
       throw new Error(`Invalid preset specified in Babel options: "${presetName}"`);
     }
     return preset;
@@ -36,18 +47,7 @@ function processOptions(options) {
 
   // Parse plugin names
   const plugins = (options.plugins || []).map(pluginName => {
-    let plugin = null;
-
-    if (pluginName instanceof Array && typeof pluginName[0] === 'string') {
-      if (pluginName[0] in availablePlugins) {
-        plugin = [availablePlugins[pluginName[0]]].concat(pluginName.slice(1));
-      }
-    } else if (typeof pluginName === 'string') {
-      plugin = availablePlugins[pluginName];
-    } else {
-      // Could be an actual plugin module
-      return pluginName;
-    }
+    const plugin = loadBuiltin(availablePlugins, pluginName);
 
     if (!plugin) {
       throw new Error(`Invalid plugin specified in Babel options: "${pluginName}"`);
