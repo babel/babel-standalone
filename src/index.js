@@ -254,6 +254,14 @@ export const version = Babel.version;
 
 // Listen for load event if we're in a browser and then kick off finding and
 // running of scripts with "text/babel" type.
+const transformScriptTags = () => runScripts(transform);
 if (typeof window !== 'undefined' && window && window.addEventListener) {
-  window.addEventListener('DOMContentLoaded', () => runScripts(transform), false);
+  window.addEventListener('DOMContentLoaded', transformScriptTags, false);
+}
+
+/**
+ * Disables automatic transformation of <script> tags with "text/babel" type.
+ */
+export function disableScriptTags() {
+  window.removeEventListener('DOMContentLoaded', transformScriptTags);
 }
