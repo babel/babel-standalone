@@ -7,23 +7,6 @@
  * grant of patent rights can be found in the PATENTS file in the same directory.
  */
 
-// The options we'll pass will be pretty inline with what we're expecting people
-// to write. It won't cover every use case but will set ES2015 as the baseline
-// and transform JSX. We'll also support 2 in-process syntaxes since they are
-// commonly used with React: class properties, Flow types, & object rest spread.
-const babelOpts = {
-  presets: [
-    'react',
-    'es2015',
-  ],
-  plugins: [
-    'transform-class-properties',
-    'transform-object-rest-spread',
-    'transform-flow-strip-types',
-  ],
-  sourceMaps: 'inline',
-};
-
 const scriptTypes = [
   'text/jsx',
   'text/babel',
@@ -35,10 +18,10 @@ let inlineScriptCount = 0;
 /**
  * Actually transform the code.
  */
-function transformCode(transformFn, code, url) {
+function transformCode(transformFn, script) {
   let source;
-  if (url != null) {
-    source = url;
+  if (script.url != null) {
+    source = script.url;
   } else {
     source = 'Inline Babel script';
     inlineScriptCount++;
@@ -48,12 +31,31 @@ function transformCode(transformFn, code, url) {
   }
 
   return transformFn(
-    code,
+    script.content,
     {
       filename: source,
-      ...babelOpts
+      ...buildBabelOptions(script),
     }
   ).code;
+}
+
+/**
+ * Builds the Babel options for transforming the specified script, using some
+ * sensible default presets and plugins if none were explicitly provided.
+ */
+function buildBabelOptions(script) {
+  return {
+    presets: script.presets || [
+      'react',
+      'es2015',
+    ],
+    plugins: script.plugins || [
+      'transform-class-properties',
+      'transform-object-rest-spread',
+      'transform-flow-strip-types',
+    ],
+    sourceMaps: 'inline',
+  }
 }
 
 
@@ -61,9 +63,9 @@ function transformCode(transformFn, code, url) {
  * Appends a script element at the end of the <head> with the content of code,
  * after transforming it.
  */
-function run(transformFn, code, url, options) {
+function run(transformFn, script) {
   const scriptEl = document.createElement('script');
-  scriptEl.text = transformCode(transformFn, code, url, options);
+  scriptEl.text = transformCode(transformFn, script);
   headEl.appendChild(scriptEl);
 }
 
@@ -93,6 +95,25 @@ function load(url, successCallback, errorCallback) {
 }
 
 /**
+ * Converts a comma-separated data attribute string into an array of values. If
+ * the string is empty, returns an empty array. If the string is not defined,
+ * returns null.
+ */
+function getPluginsOrPresetsFromScript(script, attributeName) {
+  const rawValue = script.getAttribute(attributeName);
+  if (rawValue === '') {
+    // Empty string means to not load ANY presets or plugins
+    return [];
+  }
+  if (!rawValue) {
+    // Any other falsy value (null, undefined) means we're not overriding this
+    // setting, and should use the default.
+    return null;
+  }
+  return rawValue.split(',').map(item => item.trim());
+}
+
+/**
  * Loop over provided script tags and get the content, via innerHTML if an
  * inline script, or by using XHR. Transforms are applied if needed. The scripts
  * are executed in the order they are found on the page.
@@ -109,7 +130,7 @@ function loadScripts(transformFn, scripts) {
 
       if (script.loaded && !script.executed) {
         script.executed = true;
-        run(transformFn, script.content, script.url);
+        run(transformFn, script);
       } else if (!script.loaded && !script.error && !script.async) {
         break;
       }
@@ -117,14 +138,18 @@ function loadScripts(transformFn, scripts) {
   }
 
   scripts.forEach((script, i) => {
-    // script.async is always true for non-JavaScript script tags
-    var async = script.hasAttribute('async');
+    const scriptData = {
+      // script.async is always true for non-JavaScript script tags
+      async: script.hasAttribute('async'),
+      error: false,
+      executed: false,
+      plugins: getPluginsOrPresetsFromScript(script, 'data-plugins'),
+      presets: getPluginsOrPresetsFromScript(script, 'data-presets'),
+    };
 
     if (script.src) {
       result[i] = {
-        async: async,
-        error: false,
-        executed: false,
+        ...scriptData,
         content: null,
         loaded: false,
         url: script.src,
@@ -144,9 +169,7 @@ function loadScripts(transformFn, scripts) {
       );
     } else {
       result[i] = {
-        async: async,
-        error: false,
-        executed: false,
+        ...scriptData,
         content: script.innerHTML,
         loaded: true,
         url: null,
