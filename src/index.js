@@ -69,9 +69,46 @@ export function transform(code, options) {
 export function transformFromAst(ast, code, options) {
   return Babel.transformFromAst(ast, code, processOptions(options));
 }
+export const availablePlugins = {};
+export const availablePresets = {};
+
+/**
+ * Registers a named plugin for use with Babel.
+ */
+export function registerPlugin(name, plugin) {
+  if (availablePlugins.hasOwnProperty(name)) {
+    console.warn(`A plugin named "${name}" is already registered, it will be overridden`);
+  }
+  availablePlugins[name] = plugin;
+}
+/**
+ * Registers multiple plugins for use with Babel. `newPlugins` should be an object where the key
+ * is the name of the plugin, and the value is the plugin itself.
+ */
+export function registerPlugins(newPlugins) {
+  Object.keys(newPlugins).forEach(name => registerPlugin(name, newPlugins[name]));
+}
+
+/**
+ * Registers a named preset for use with Babel.
+ */
+export function registerPreset(name, preset) {
+  if (availablePresets.hasOwnProperty(name)) {
+    console.warn(`A preset named "${name}" is already registered, it will be overridden`);
+  }
+  availablePresets[name] = preset;
+}
+/**
+ * Registers multiple presets for use with Babel. `newPresets` should be an object where the key
+ * is the name of the preset, and the value is the preset itself.
+ */
+export function registerPresets(newPresets) {
+  Object.keys(newPresets).forEach(name => registerPreset(name, newPresets[name]));
+}
+
 
 // All the plugins we should bundle
-export const availablePlugins = {
+registerPlugins({
   'check-es2015-constants': require('babel-plugin-check-es2015-constants'),
   'external-helpers-2': require('babel-plugin-external-helpers-2'),
   'syntax-async-functions': require('babel-plugin-syntax-async-functions'),
@@ -150,10 +187,10 @@ export const availablePlugins = {
   'transform-strict-mode': require('babel-plugin-transform-strict-mode'),
   'transform-undefined-to-void': require('babel-plugin-transform-undefined-to-void'),
   'undeclared-variables-check': require('babel-plugin-undeclared-variables-check'),
-};
+});
 
 // All the presets we should bundle
-export const availablePresets = {
+registerPresets({
   es2015: require('babel-preset-es2015'),
   react: require('babel-preset-react'),
   'stage-0': require('babel-preset-stage-0'),
@@ -214,7 +251,7 @@ export const availablePresets = {
       [require("babel-plugin-transform-regenerator"), { async: false, asyncGenerators: false }],
     ]
   },
-};
+});
 
 export const version = Babel.version;
 

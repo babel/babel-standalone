@@ -104,4 +104,40 @@ describe('babel-standalone', () => {
       () => Babel.transform('var foo', {plugins: ['lolfail']})
     ).to.throwException(/Invalid plugin specified in Babel options: "lolfail"/);
   });
+
+  describe('custom plugins and presets', () => {
+    const lolizer = () => ({
+      visitor: {
+        Identifier(path) {
+          path.node.name = 'LOL';
+        }
+      }
+    });
+
+    it('allows custom plugins to be registered', () => {
+      Babel.registerPlugin('lolizer', lolizer);
+      const output = Babel.transform(
+        'function helloWorld() { alert(hello); }',
+        {plugins: ['lolizer']}
+      );
+      expect(output.code).to.be(
+`function LOL() {
+  LOL(LOL);
+}`
+      );
+    });
+
+    it('allows custom presets to be registered', () => {
+      Babel.registerPreset('lulz', {plugins: [lolizer]});
+      const output = Babel.transform(
+        'function helloWorld() { alert(hello); }',
+        {presets: ['lulz']}
+      );
+      expect(output.code).to.be(
+`function LOL() {
+  LOL(LOL);
+}`
+      );
+    });
+  });
 });
