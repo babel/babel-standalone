@@ -1,0 +1,29 @@
+{
+  "name": "babili-standalone",
+  "version": "0.0.3",
+  "description": "Standalone build of Babili (babel-minify) for use in non-Node.js environments",
+  "main": "babili.js",
+  "files": [
+    "babili.js",
+    "babili.min.js",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Daniel15/babel-standalone.git"
+  },
+  "keywords": [
+    "babel-preset",
+    "babel-standalone",
+    "babel",
+    "6to5",
+    "minify",
+    "uglify"
+  ],
+  "author": "Daniel Lo Nigro <daniel@dan.cx> (http://dan.cx/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Daniel15/babel-standalone/issues"
+  },
+  "homepage": "https://dl.vc/babili-standalone",
+}
