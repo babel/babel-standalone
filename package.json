@@ -1,6 +1,6 @@
 {
   "name": "babel-standalone",
-  "version": "6.13.2",
+  "version": "6.14.0",
   "description": "Standalone build of Babel for use in non-Node.js environments. Similar to the (now deprecated) babel-browser",
   "main": "babel.js",
   "scripts": {
