@@ -1,7 +1,7 @@
 babel-standalone
 ================
 
-babel-standalone is a standalone build of Babel for use in non-Node.js environments, including browsers. It's bundled with all the standard Babel plugins and presets.
+babel-standalone is a standalone build of Babel for use in non-Node.js environments, including browsers. It's bundled with all the standard Babel plugins and presets, and [a build of babili (babel-minify)](http://dl.vc/babili-standalone) is optionally available too.
 
 But why?!
 =========
