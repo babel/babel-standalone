@@ -121,8 +121,6 @@
     "babel-preset-stage-1": "6.13.0",
     "babel-preset-stage-2": "6.13.0",
     "babel-preset-stage-3": "6.11.0",
-    "bluebird": "^3.4.3",
-    "child-process-promise": "^2.1.3",
     "expect.js": "^0.3.1",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
@@ -133,8 +131,6 @@
     "npm-check-updates": "^2.8.0",
     "proxyquire": "^1.7.10",
     "react": "^15.3.1",
-    "semver-compare": "^1.0.0",
-    "simple-git": "^1.48.0",
     "webpack": "^1.13.2",
     "webpack-stream": "^3.2.0"
   },
@@ -145,7 +141,7 @@
     "transpile",
     "transpiler"
   ],
-  "author": "Daniel Lo Nigro <daniel@dan.cx> (http://dan.cx/)",
+  "author": "Daniel Lo Nigro \u003cdaniel@dan.cx\u003e (http://dan.cx/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Daniel15/babel-standalone/issues"
