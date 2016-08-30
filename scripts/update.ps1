@@ -77,7 +77,7 @@ npm run test; Assert-LastExitCode
 Write-Output 'Build looks okay, committing and pushing changes'
 Set-PackageVersion -Package $package_json -Version $babel_version
 git commit -m ('Upgrade to Babel {0}' -f $babel_version) --author='DanBuild <build@dan.cx>' package.json; Assert-LastExitCode
-git tag -a ('release-TES2T-' + $babel_version) -m ('Automated upgrade to Babel {0}' -f $babel_version); Assert-LastExitCode
+git tag -a ('release-' + $babel_version) -m ('Automated upgrade to Babel {0}' -f $babel_version); Assert-LastExitCode
 git push origin master --follow-tags; Assert-LastExitCode
 
 Write-Output 'DONE!'
