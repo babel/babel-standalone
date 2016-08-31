@@ -27,7 +27,7 @@
     "babel-plugin-minify-flip-comparisons": "0.0.1",
     "babel-plugin-minify-guarded-expressions": "0.0.1",
     "babel-plugin-minify-infinity": "0.0.1",
-    "babel-plugin-minify-mangle-names": "0.0.1",
+    "babel-plugin-minify-mangle-names": "0.0.2",
     "babel-plugin-minify-replace": "0.0.1",
     "babel-plugin-minify-simplify": "0.0.1",
     "babel-plugin-minify-type-constructors": "0.0.1",
@@ -141,7 +141,7 @@
     "transpile",
     "transpiler"
   ],
-  "author": "Daniel Lo Nigro \u003cdaniel@dan.cx\u003e (http://dan.cx/)",
+  "author": "Daniel Lo Nigro <daniel@dan.cx> (http://dan.cx/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Daniel15/babel-standalone/issues"
