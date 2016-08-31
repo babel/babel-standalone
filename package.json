@@ -111,7 +111,7 @@
     "babel-plugin-transform-strict-mode": "6.11.3",
     "babel-plugin-transform-undefined-to-void": "6.8.0",
     "babel-plugin-undeclared-variables-check": "6.8.0",
-    "babel-preset-babili": "0.0.1",
+    "babel-preset-babili": "0.0.2",
     "babel-preset-es2015": "6.14.0",
     "babel-preset-es2016": "6.11.3",
     "babel-preset-es2017": "6.14.0",
@@ -141,7 +141,7 @@
     "transpile",
     "transpiler"
   ],
-  "author": "Daniel Lo Nigro \u003cdaniel@dan.cx\u003e (http://dan.cx/)",
+  "author": "Daniel Lo Nigro <daniel@dan.cx> (http://dan.cx/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Daniel15/babel-standalone/issues"
