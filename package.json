@@ -55,7 +55,7 @@
     "babel-plugin-transform-do-expressions": "6.8.0",
     "babel-plugin-transform-es2015-arrow-functions": "6.8.0",
     "babel-plugin-transform-es2015-block-scoped-functions": "6.8.0",
-    "babel-plugin-transform-es2015-block-scoping": "6.14.0",
+    "babel-plugin-transform-es2015-block-scoping": "6.15.0",
     "babel-plugin-transform-es2015-classes": "6.14.0",
     "babel-plugin-transform-es2015-computed-properties": "6.8.0",
     "babel-plugin-transform-es2015-destructuring": "6.9.0",
@@ -141,7 +141,7 @@
     "transpile",
     "transpiler"
   ],
-  "author": "Daniel Lo Nigro \u003cdaniel@dan.cx\u003e (http://dan.cx/)",
+  "author": "Daniel Lo Nigro <daniel@dan.cx> (http://dan.cx/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Daniel15/babel-standalone/issues"
