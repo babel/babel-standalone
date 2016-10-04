@@ -16,6 +16,6 @@ class Mangler {
   }
 }
 new Mangler();`).code;
-    expect(output).to.be('class a{constructor(b){this.program=b}}new a;');
+    expect(output).to.be('class Mangler{constructor(a){this.program=a}}new Mangler;');
   });
 });
