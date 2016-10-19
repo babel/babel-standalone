@@ -20,7 +20,7 @@
     "babel-core": "6.17.0",
     "babel-loader": "6.2.5",
     "babel-plugin-check-es2015-constants": "6.8.0",
-    "babel-plugin-external-helpers-2": "6.3.13",
+    "babel-plugin-external-helpers": "6.8.0",
     "babel-plugin-minify-constant-folding": "0.0.1",
     "babel-plugin-minify-dead-code-elimination": "0.0.3",
     "babel-plugin-minify-empty-function": "0.0.1",
