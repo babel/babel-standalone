@@ -110,7 +110,7 @@ export function registerPresets(newPresets) {
 // All the plugins we should bundle
 registerPlugins({
   'check-es2015-constants': require('babel-plugin-check-es2015-constants'),
-  'external-helpers-2': require('babel-plugin-external-helpers-2'),
+  'external-helpers': require('babel-plugin-external-helpers'),
   'syntax-async-functions': require('babel-plugin-syntax-async-functions'),
   'syntax-async-generators': require('babel-plugin-syntax-async-generators'),
   'syntax-class-constructor-call': require('babel-plugin-syntax-class-constructor-call'),
