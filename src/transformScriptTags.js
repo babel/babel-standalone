@@ -45,7 +45,6 @@ function transformCode(transformFn, script) {
  */
 function buildBabelOptions(script) {
   return {
-    babelrc: false,
     presets: script.presets || [
       'react',
       'es2015',

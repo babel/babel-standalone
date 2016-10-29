@@ -56,6 +56,7 @@ function processOptions(options) {
   });
 
   return {
+    babelrc: false,
     ...options,
     presets,
     plugins,
