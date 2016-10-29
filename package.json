@@ -5,7 +5,7 @@
   "main": "babel.js",
   "scripts": {
     "build": "gulp build",
-    "test": "mocha"
+    "test": "jest"
   },
   "files": [
     "babel.js",
@@ -121,15 +121,13 @@
     "babel-preset-stage-1": "6.16.0",
     "babel-preset-stage-2": "6.18.0",
     "babel-preset-stage-3": "6.17.0",
-    "expect.js": "^0.3.1",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^2.0.0",
+    "jest": "^16.0.2",
     "json-loader": "^0.5.4",
     "lazypipe": "^1.0.1",
-    "mocha": "^3.1.2",
     "npm-check-updates": "^2.8.6",
-    "proxyquire": "^1.7.10",
     "react": "^15.3.2",
     "webpack": "^1.13.2",
     "webpack-stream": "^3.2.0"

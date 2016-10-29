@@ -1,5 +1,3 @@
-const expect = require('expect.js');
-
 const Babel = require('../babel');
 
 // Basic smoke tests for babel-standalone
@@ -9,7 +7,7 @@ describe('babel-standalone', () => {
       'const getMessage = () => "Hello World"',
       {presets: ['es2015-no-commonjs']}
     ).code;
-    expect(output).to.be(
+    expect(output).toBe(
       'var getMessage = function getMessage() {\n' +
       '  return "Hello World";\n' +
       '};'
@@ -39,7 +37,7 @@ describe('babel-standalone', () => {
       "sourceType": "module"
     }
     const output = Babel.transformFromAst(ast, "42", { presets: ["es2015"]}).code;
-    expect(output).to.be(
+    expect(output).toBe(
       '"use strict";\n' +
       '\n' +
       '42;'
@@ -51,7 +49,7 @@ describe('babel-standalone', () => {
       'const someDiv = <div>{getMessage()}</div>',
       {presets: ['react']}
     ).code;
-    expect(output).to.be(
+    expect(output).toBe(
       'const someDiv = React.createElement(\n' +
       '  "div",\n' +
       '  null,\n' +
@@ -65,7 +63,7 @@ describe('babel-standalone', () => {
       'export let x',
       {presets: [['es2015', { modules: false }]]}
     ).code;
-    expect(output).to.be(
+    expect(output).toBe(
       'export var x = void 0;'
     )
   });
@@ -76,7 +74,7 @@ describe('babel-standalone', () => {
       {plugins: ['transform-es2015-arrow-functions']}
     ).code;
     // Transforms arrow syntax but NOT "const".
-    expect(output).to.be(
+    expect(output).toBe(
       'const getMessage = function () {\n' +
       '  return "Hello World";\n' +
       '};'
@@ -88,7 +86,7 @@ describe('babel-standalone', () => {
       '`${x}`',
       {plugins: [['transform-es2015-template-literals', {spec: true}]]}
     ).code;
-    expect(output).to.be(
+    expect(output).toBe(
       '"" + String(x);'
     );
   })
@@ -96,13 +94,13 @@ describe('babel-standalone', () => {
   it('throws on invalid preset name', () => {
     expect(
       () => Babel.transform('var foo', {presets: ['lolfail']})
-    ).to.throwException(/Invalid preset specified in Babel options: "lolfail"/);
+    ).toThrow(/Invalid preset specified in Babel options: "lolfail"/);
   });
 
   it('throws on invalid plugin name', () => {
     expect(
       () => Babel.transform('var foo', {plugins: ['lolfail']})
-    ).to.throwException(/Invalid plugin specified in Babel options: "lolfail"/);
+    ).toThrow(/Invalid plugin specified in Babel options: "lolfail"/);
   });
 
   describe('custom plugins and presets', () => {
@@ -120,7 +118,7 @@ describe('babel-standalone', () => {
         'function helloWorld() { alert(hello); }',
         {plugins: ['lolizer']}
       );
-      expect(output.code).to.be(
+      expect(output.code).toBe(
 `function LOL() {
   LOL(LOL);
 }`
@@ -133,7 +131,7 @@ describe('babel-standalone', () => {
         'function helloWorld() { alert(hello); }',
         {presets: ['lulz']}
       );
-      expect(output.code).to.be(
+      expect(output.code).toBe(
 `function LOL() {
   LOL(LOL);
 }`
