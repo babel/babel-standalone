@@ -1,6 +1,6 @@
 {
   "name": "babel-standalone",
-  "version": "6.18.1",
+  "version": "6.18.2",
   "description": "Standalone build of Babel for use in non-Node.js environments. Similar to the (now deprecated) babel-browser",
   "main": "babel.js",
   "scripts": {
@@ -17,20 +17,20 @@
     "url": "git+https://github.com/Daniel15/babel-standalone.git"
   },
   "devDependencies": {
-    "babel-core": "6.18.0",
-    "babel-loader": "6.2.5",
+    "babel-core": "6.18.2",
+    "babel-loader": "6.2.7",
     "babel-plugin-check-es2015-constants": "6.8.0",
     "babel-plugin-external-helpers": "6.18.0",
     "babel-plugin-minify-constant-folding": "0.0.1",
-    "babel-plugin-minify-dead-code-elimination": "0.0.4",
+    "babel-plugin-minify-dead-code-elimination": "0.1.0",
     "babel-plugin-minify-empty-function": "0.0.1",
     "babel-plugin-minify-flip-comparisons": "0.0.1",
     "babel-plugin-minify-guarded-expressions": "0.0.3",
     "babel-plugin-minify-infinity": "0.0.1",
-    "babel-plugin-minify-mangle-names": "0.0.3",
+    "babel-plugin-minify-mangle-names": "0.0.4",
     "babel-plugin-minify-replace": "0.0.1",
-    "babel-plugin-minify-simplify": "0.0.3",
-    "babel-plugin-minify-type-constructors": "0.0.1",
+    "babel-plugin-minify-simplify": "0.0.4",
+    "babel-plugin-minify-type-constructors": "0.0.2",
     "babel-plugin-syntax-async-functions": "6.13.0",
     "babel-plugin-syntax-async-generators": "6.13.0",
     "babel-plugin-syntax-class-constructor-call": "6.18.0",
@@ -111,7 +111,7 @@
     "babel-plugin-transform-strict-mode": "6.18.0",
     "babel-plugin-transform-undefined-to-void": "6.8.0",
     "babel-plugin-undeclared-variables-check": "6.8.0",
-    "babel-preset-babili": "0.0.5",
+    "babel-preset-babili": "0.0.8",
     "babel-preset-es2015": "6.18.0",
     "babel-preset-es2016": "6.16.0",
     "babel-preset-es2017": "6.16.0",
@@ -129,7 +129,7 @@
     "lazypipe": "^1.0.1",
     "npm-check-updates": "^2.8.6",
     "react": "^15.3.2",
-    "webpack": "^1.13.2",
+    "webpack": "^1.13.3",
     "webpack-stream": "^3.2.0"
   },
   "keywords": [
