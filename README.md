@@ -48,7 +48,7 @@ document.getElementById('output').innerHTML = getMessage();
 
 You can use the `data-plugins` and `data-presets` attributes to specify the Babel plugins/presets to use:
 ```html
-<script type="text/babel" data-presets="es2015,stage2">
+<script type="text/babel" data-presets="es2015,stage-2">
 ```
 
 Loading external scripts via `src` attribute is supported too:
