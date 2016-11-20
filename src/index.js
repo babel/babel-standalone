@@ -251,7 +251,7 @@ registerPresets({
   },
 });
 
-export const version = Babel.version;
+export const version = VERSION;
 
 // Listen for load event if we're in a browser and then kick off finding and
 // running of scripts with "text/babel" type.

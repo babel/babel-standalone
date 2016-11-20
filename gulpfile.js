@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 const uglify = require('gulp-uglify');
 
-function webpackBuild(filename, libraryName) {
+function webpackBuild(filename, libraryName, version) {
   const config = {
     module: {
       loaders: [
@@ -37,7 +37,8 @@ function webpackBuild(filename, libraryName) {
     },
     plugins: [
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': '"production"'
+        'process.env.NODE_ENV': '"production"',
+        VERSION: JSON.stringify(version),
       }),
       // Use browser version of visionmedia-debug
       new webpack.NormalModuleReplacementPlugin(
@@ -68,14 +69,14 @@ gulp.task('build', ['build-babel', 'build-babili']);
 
 gulp.task('build-babel', () => {
   return gulp.src('src/index.js')
-    .pipe(webpackBuild('babel.js', 'Babel'))
+    .pipe(webpackBuild('babel.js', 'Babel', require('./package.json').version))
     .pipe(gulp.dest('.'))
     .pipe(minifyAndRename())
     .pipe(gulp.dest('.'));
 });
 gulp.task('build-babili', () => {
   return gulp.src('src/babili.js')
-    .pipe(webpackBuild('babili.js', 'Babili'))
+    .pipe(webpackBuild('babili.js', 'Babili', require('./packages/babili-standalone/package.json').version))
     .pipe(gulp.dest('packages/babili-standalone/'))
     .pipe(minifyAndRename())
     .pipe(gulp.dest('packages/babili-standalone/'));

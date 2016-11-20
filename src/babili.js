@@ -37,3 +37,5 @@ export function transform(code, options = {}) {
     ]
   });
 }
+
+export const version = VERSION;
