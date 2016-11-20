@@ -38,12 +38,17 @@ function webpackBuild(filename, libraryName, version) {
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': '"production"',
+        BABEL_VERSION: JSON.stringify(require('babel-core/package.json').version),
         VERSION: JSON.stringify(version),
       }),
       // Use browser version of visionmedia-debug
       new webpack.NormalModuleReplacementPlugin(
         /debug\/node/,
         'debug/browser'
+      ),
+      new webpack.NormalModuleReplacementPlugin(
+        /..\/..\/package/,
+        '../../../../src/babel-package-shim'
       ),
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.optimize.DedupePlugin()
