@@ -22,7 +22,6 @@ There are several ways to get a copy of Babili. Pick whichever one you like:
 - Install via Bower: `bower install babili-standalone`
 - Install via NPM: `npm install --save babili-standalone`
 - Manually grab `babili.js` and/or `babili.min.js` from the [GitHub releases page](https://github.com/Daniel15/babel-standalone/releases). Every release includes these files.
-- Install it via Git: You can use the repo at https://github.com/Daniel15/babel-standalone-bower to pull a prebuilt version from Git. Note that this is generally only advised for systems that *must* pull artifacts from Git, such as Bower.
 
 Usage
 =====
