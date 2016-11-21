@@ -18,7 +18,7 @@ Installation
 
 There are several ways to get a copy of Babili. Pick whichever one you like:
 
-- Use it via CDNJS: [TODO]. This is a simple way to embed it on a webpage without having to do any other setup.
+- Use it via CDNJS: https://cdnjs.cloudflare.com/ajax/libs/babili-standalone/0.0.8/babili.min.js. This is a simple way to embed it on a webpage without having to do any other setup.
 - Install via Bower: `bower install babili-standalone`
 - Install via NPM: `npm install --save babili-standalone`
 - Manually grab `babili.js` and/or `babili.min.js` from the [GitHub releases page](https://github.com/Daniel15/babel-standalone/releases). Every release includes these files.
