@@ -77,7 +77,7 @@ function New-GitHubRelease(
       body = 'Automated upgrade to Babel ' + $version
       draft = $false
       name = $version
-      tag_name = 'v' + $version
+      tag_name = 'release-' + $version
     } | ConvertTo-Json)
 }
 
