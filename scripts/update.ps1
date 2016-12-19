@@ -116,6 +116,7 @@ if (([Version]$package_json.version) -ge $babel_version) {
 
 Write-Output ('Current version is {0}, latest Babel version is {1}' -f $package_json.version, $babel_version)
 
+Set-PackageVersion -Package $package_json -Version $babel_version
 npm install; Assert-LastExitCode
 
 Write-Output 'Building and running tests'
@@ -123,7 +124,6 @@ npm run build; Assert-LastExitCode
 npm run test; Assert-LastExitCode
 
 Write-Output 'Build looks okay, committing and pushing changes'
-Set-PackageVersion -Package $package_json -Version $babel_version
 git commit -m ('Upgrade to Babel {0}' -f $babel_version) --author='DanBuild <build@dan.cx>' package.json; Assert-LastExitCode
 git tag -a ('release-' + $babel_version) -m ('Automated upgrade to Babel {0}' -f $babel_version); Assert-LastExitCode
 
