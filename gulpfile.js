@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const lazypipe = require('lazypipe');
+const pump = require('pump');
 const rename = require('gulp-rename');
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
@@ -72,17 +73,21 @@ const minifyAndRename = lazypipe()
 gulp.task('default', ['build']);
 gulp.task('build', ['build-babel', 'build-babili']);
 
-gulp.task('build-babel', () => {
-  return gulp.src('src/index.js')
-    .pipe(webpackBuild('babel.js', 'Babel', require('./package.json').version))
-    .pipe(gulp.dest('.'))
-    .pipe(minifyAndRename())
-    .pipe(gulp.dest('.'));
+gulp.task('build-babel', cb => {
+  pump([
+    gulp.src('src/index.js'),
+    webpackBuild('babel.js', 'Babel', require('./package.json').version),
+    gulp.dest('.'),
+    minifyAndRename(),
+    gulp.dest('.'),
+  ], cb);
 });
-gulp.task('build-babili', () => {
-  return gulp.src('src/babili.js')
-    .pipe(webpackBuild('babili.js', 'Babili', require('./packages/babili-standalone/package.json').version))
-    .pipe(gulp.dest('packages/babili-standalone/'))
-    .pipe(minifyAndRename())
-    .pipe(gulp.dest('packages/babili-standalone/'));
+gulp.task('build-babili', cb => {
+  pump([
+    gulp.src('src/babili.js'),
+    webpackBuild('babili.js', 'Babili', require('./packages/babili-standalone/package.json').version),
+    gulp.dest('packages/babili-standalone/'),
+    minifyAndRename(),
+    gulp.dest('packages/babili-standalone/'),
+  ], cb);
 });
