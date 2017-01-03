@@ -45,7 +45,7 @@ function webpackBuild(filename, libraryName, version) {
       // Use browser version of visionmedia-debug
       new webpack.NormalModuleReplacementPlugin(
         /debug\/node/,
-        'debug/browser'
+        'debug/src/browser'
       ),
       new webpack.NormalModuleReplacementPlugin(
         /..\/..\/package/,
