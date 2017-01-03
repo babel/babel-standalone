@@ -1,6 +1,6 @@
 {
   "name": "babel-standalone",
-  "version": "6.21.0",
+  "version": "6.21.1",
   "description": "Standalone build of Babel for use in non-Node.js environments. Similar to the (now deprecated) babel-browser",
   "main": "babel.js",
   "scripts": {
@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "babel-core": "6.21.0",
+    "babel-helper-builder-react-jsx": "6.21.1",
     "babel-loader": "6.2.10",
     "babel-plugin-check-es2015-constants": "6.8.0",
     "babel-plugin-external-helpers": "6.18.0",
@@ -124,13 +125,13 @@
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^2.0.0",
-    "jest": "^18.0.0",
+    "jest": "^18.1.0",
     "json-loader": "^0.5.4",
     "lazypipe": "^1.0.1",
-    "npm-check-updates": "^2.8.8",
+    "npm-check-updates": "^2.8.9",
+    "pump": "^1.0.2",
     "react": "^15.4.1",
     "webpack": "^1.14.0",
-    "pump": "^1.0.1",
     "webpack-stream": "^3.2.0"
   },
   "keywords": [
