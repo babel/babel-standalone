@@ -91,7 +91,7 @@ function Add-GitHubReleaseAsset(
     -Uri ('{0}?name={1}&access_token={2}' -f $upload_url, $filename, $global:config.github_token) `
     -Method Post `
     -ContentType 'text/javascript' `
-    -Body (Get-Content -Path $Path -Raw) | Out-Null
+    -Body (Get-Content -Path $Path -Raw -Encoding UTF8) | Out-Null
 
     Write-Output ('Uploaded ' + $filename)
 }
