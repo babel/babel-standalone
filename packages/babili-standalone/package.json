@@ -1,6 +1,6 @@
 {
   "name": "babili-standalone",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Standalone build of Babili (babel-minify) for use in non-Node.js environments",
   "main": "babili.js",
   "files": [
