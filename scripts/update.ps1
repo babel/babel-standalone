@@ -105,7 +105,7 @@ if ($Clean) {
   git pull
 }
 
-.\node_modules\.bin\npm-check-updates -a; Assert-LastExitCode
+.\node_modules\.bin\npm-check-updates -a /^babel/; Assert-LastExitCode
 
 $package_json = Get-Content -Path package.json | ConvertFrom-Json
 $babel_version = Get-LatestDependencyVersion -Package $package_json -Filter 'babel\-'
