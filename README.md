@@ -18,7 +18,7 @@ Installation
 
 There are several ways to get a copy of babel-standalone. Pick whichever one you like:
 
-- Use it via CDNJS: https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js. This is a simple way to embed it on a webpage without having to do any other setup.
+- Use it via UNPKG: https://unpkg.com/babel-standalone@6/babel.min.js. This is a simple way to embed it on a webpage without having to do any other setup.
 - Install via Bower: `bower install babel-standalone`
 - Install via NPM: `npm install --save babel-standalone`
 - Manually grab `babel.js` and/or `babel.min.js` from the [GitHub releases page](https://github.com/Daniel15/babel-standalone/releases). Every release includes these files.
@@ -38,7 +38,7 @@ When loaded in a browser, babel-standalone will automatically compile and execut
 ```html
 <div id="output"></div>
 <!-- Load Babel -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <!-- Your custom script here -->
 <script type="text/babel">
 const getMessage = () => "Hello World";
