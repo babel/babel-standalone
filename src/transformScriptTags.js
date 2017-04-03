@@ -181,11 +181,17 @@ function loadScripts(transformFn, scripts) {
 }
 
 /**
- * Find and run all script tags with type="text/jsx".
+ * Run script tags with type="text/jsx".
+ * @param {Array} scriptTags specify script tags to run, run all in the <head> if not given
  */
-export function runScripts(transformFn) {
-  headEl = document.getElementsByTagName('head')[0];
-  const scripts = document.getElementsByTagName('script');
+export function runScripts(transformFn, scriptTags) {
+  let scripts
+  if(scriptTags) {
+    scripts = scriptTags
+  } else {
+    headEl = document.getElementsByTagName('head')[0];
+    scripts = document.getElementsByTagName('script');
+  }
 
   // Array.prototype.slice cannot be used on NodeList on IE8
   const jsxScripts = [];
