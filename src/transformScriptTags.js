@@ -186,10 +186,10 @@ function loadScripts(transformFn, scripts) {
  */
 export function runScripts(transformFn, scriptTags) {
   let scripts
+  headEl = document.getElementsByTagName('head')[0];
   if(scriptTags) {
     scripts = scriptTags
   } else {
-    headEl = document.getElementsByTagName('head')[0];
     scripts = document.getElementsByTagName('script');
   }
 
