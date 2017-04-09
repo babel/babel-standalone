@@ -255,9 +255,16 @@ export const version = VERSION;
 
 // Listen for load event if we're in a browser and then kick off finding and
 // running of scripts with "text/babel" type.
-const transformScriptTags = () => runScripts(transform);
 if (typeof window !== 'undefined' && window && window.addEventListener) {
   window.addEventListener('DOMContentLoaded', transformScriptTags, false);
+}
+
+/**
+ * Transform <script> tags with "text/babel" type.
+ * @param {Array} scriptTags specify script tags to transform, transform all in the <head> if not given
+ */
+export function transformScriptTags(scriptTags) {
+  runScripts(transform, scriptTags);
 }
 
 /**
@@ -266,3 +273,4 @@ if (typeof window !== 'undefined' && window && window.addEventListener) {
 export function disableScriptTags() {
   window.removeEventListener('DOMContentLoaded', transformScriptTags);
 }
+
