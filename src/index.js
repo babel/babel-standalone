@@ -112,6 +112,7 @@ export function registerPresets(newPresets) {
 registerPlugins({
   'check-es2015-constants': require('babel-plugin-check-es2015-constants'),
   'external-helpers': require('babel-plugin-external-helpers'),
+  'inline-replace-variables': require('babel-plugin-inline-replace-variables'),
   'syntax-async-functions': require('babel-plugin-syntax-async-functions'),
   'syntax-async-generators': require('babel-plugin-syntax-async-generators'),
   'syntax-class-constructor-call': require('babel-plugin-syntax-class-constructor-call'),
