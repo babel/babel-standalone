@@ -110,6 +110,8 @@ if ($Clean) {
   git pull
 }
 
+# We need to run npm install in order to be able to use npm-check-updates
+npm install; Assert-LastExitCode
 .\node_modules\.bin\npm-check-updates -a /^babel/; Assert-LastExitCode
 
 $package_json = Get-Content -Path package.json | ConvertFrom-Json
@@ -122,6 +124,10 @@ if (([Version]$package_json.version) -ge $babel_version) {
 Write-Output ('Current version is {0}, latest Babel version is {1}' -f $package_json.version, $babel_version)
 
 Set-PackageVersion -Package $package_json -Version $babel_version
+# Re-run npm install fresh in order to install any updated packages
+# This clears out the node_modules directory so that it has the most efficient
+# directory structure possible.
+Remove-Item node_modules -Recurse
 npm install; Assert-LastExitCode
 
 Write-Output 'Building and running tests'
