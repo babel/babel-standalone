@@ -8,8 +8,6 @@ param(
 $ErrorActionPreference = "Stop";
 Set-StrictMode -Version Latest
 
-. ./scripts/config.ps1
-
 ############################
 
 
@@ -71,7 +69,7 @@ function New-GitHubRelease(
   [Parameter(Mandatory)] [String] $Version
 ) {
   Invoke-RestMethod `
-    -Uri ('https://api.github.com/repos/{0}/{1}/releases?access_token={2}' -f $global:config.github_user, $global:config.github_repo, $global:config.github_token) `
+    -Uri ('https://api.github.com/repos/{0}/{1}/releases?access_token={2}' -f $Env:GITHUB_USER, $Env:GITHUB_REPO, $Env:GITHUB_TOKEN) `
     -Method Post `
     -Body (@{
       body = 'Automated upgrade to Babel ' + $version
@@ -88,7 +86,7 @@ function Add-GitHubReleaseAsset(
   $filename = Split-Path -Path $Path -Leaf
   $upload_url = $release.upload_url -replace '{.+', ''
   Invoke-WebRequest `
-    -Uri ('{0}?name={1}&access_token={2}' -f $upload_url, $filename, $global:config.github_token) `
+    -Uri ('{0}?name={1}&access_token={2}' -f $upload_url, $filename, $Env:GITHUB_TOKEN) `
     -Method Post `
     -ContentType 'text/javascript' `
     -Body (Get-Content -Path $Path -Raw -Encoding UTF8) | Out-Null
@@ -97,6 +95,12 @@ function Add-GitHubReleaseAsset(
 }
 
 ############################
+
+# Ensure environment is good
+if (!$Env:GITHUB_USER -or !$Env:GITHUB_REPO -or !$Env:GITHUB_TOKEN) {
+  Write-Error 'GITHUB_USER, GITHUB_REPO and GITHUB_TOKEN must be set'
+  Exit 1
+}
 
 if ($Clean) {
   Write-Output "Cleaning working directory"
