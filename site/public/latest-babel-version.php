@@ -1,7 +1,7 @@
 <?php
 // Determines the latest stable version of Babel.
 
-require(__DIR__.'/vendor/autoload.php');
+require(__DIR__.'/../vendor/autoload.php');
 set_time_limit(120); // Just in case
 
 use GuzzleHttp\Client;
