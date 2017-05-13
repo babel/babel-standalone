@@ -2,6 +2,7 @@
 /babel.min.js
 packages/babili-standalone/babili.js
 packages/babili-standalone/babili.min.js
+site/vendor
 
 # Logs
 logs
