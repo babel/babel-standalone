@@ -88,10 +88,10 @@ function Add-GitHubReleaseAsset(
   Invoke-WebRequest `
     -Uri ('{0}?name={1}&access_token={2}' -f $upload_url, $filename, $Env:GITHUB_TOKEN) `
     -Method Post `
-    -ContentType 'text/javascript' `
+    -ContentType 'text/javascript; charset=utf-8' `
     -Body (Get-Content -Path $Path -Raw -Encoding UTF8) | Out-Null
 
-    Write-Output ('Uploaded ' + $filename)
+  Write-Output ('Uploaded ' + $filename)
 }
 
 ############################
