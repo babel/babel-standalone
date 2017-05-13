@@ -15,7 +15,11 @@ function webpackBuild(filename, libraryName, version) {
           test: /\.js$/,
           loader: 'babel',
           query: {
-            presets: ['es2015', 'stage-0']
+            // Some of the node_modules may have their own "babel" section in
+            // their project.json (or a ".babelrc" file). We need to ignore
+            // those as we're using our own Babel options.
+            babelrc: false,
+            presets: ['es2015', 'stage-0'],
           }
         },
         {

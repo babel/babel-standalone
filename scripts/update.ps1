@@ -90,6 +90,7 @@ function Add-GitHubReleaseAsset(
     -Uri ('{0}?name={1}&access_token={2}' -f $upload_url, $filename, $Env:GITHUB_TOKEN) `
     -Method Post `
     -ContentType 'text/javascript; charset=utf-8' `
+    -UseBasicParsing `
     -Body (Get-Content -Path $Path -Raw -Encoding UTF8) | Out-Null
 
   Write-Output ('Uploaded ' + $filename)
@@ -112,7 +113,10 @@ if ($Clean) {
 
 # We need to run npm install in order to be able to use npm-check-updates
 npm install; Assert-LastExitCode
-.\node_modules\.bin\npm-check-updates -a /^babel/; Assert-LastExitCode
+#.\node_modules\.bin\npm-check-updates -u -a --packageFile ./package.json /^babel\-(plugin|preset|core)/; Assert-LastExitCode
+.\node_modules\.bin\npm-check-updates -u -a --packageFile ./package.json /^babel\-plugin/; Assert-LastExitCode
+.\node_modules\.bin\npm-check-updates -u -a --packageFile ./package.json /^babel\-preset/; Assert-LastExitCode
+.\node_modules\.bin\npm-check-updates -u -a --packageFile ./package.json /^babel\-core/; Assert-LastExitCode
 
 $package_json = Get-Content -Path package.json | ConvertFrom-Json
 $babel_version = Get-LatestDependencyVersion -Package $package_json -Filter 'babel\-(plugin|preset|core)'
