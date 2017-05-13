@@ -2,7 +2,8 @@
 # package.json to the new version, commits the new package.json, and pushes it to Github.
 
 param(
-  [switch] $Clean = $false
+  [switch] $Clean = $false,
+  [switch] $PublishNpm = $true
 )
 
 $ErrorActionPreference = "Stop";
@@ -134,9 +135,6 @@ git tag -a ('release-' + $babel_version) -m ('Automated upgrade to Babel {0}' -f
 # Push to Github
 git push origin master --follow-tags; Assert-LastExitCode
 
-# Push to npm
-npm publish
-
 # Push to GitHub releases
 Write-Output "Creating GitHub release..."
 $release = New-GitHubRelease -Version $babel_version
@@ -144,5 +142,10 @@ Add-GitHubReleaseAsset -Release $release -Path ./babel.js
 Add-GitHubReleaseAsset -Release $release -Path ./babel.min.js
 Add-GitHubReleaseAsset -Release $release -Path ./packages/babili-standalone/babili.js
 Add-GitHubReleaseAsset -Release $release -Path ./packages/babili-standalone/babili.min.js
+
+# Push to npm
+if ($PublishNpm) {
+  npm publish
+}
 
 Write-Output 'DONE!'
