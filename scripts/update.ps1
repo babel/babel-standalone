@@ -113,7 +113,7 @@ if ($Clean) {
 .\node_modules\.bin\npm-check-updates -a /^babel/; Assert-LastExitCode
 
 $package_json = Get-Content -Path package.json | ConvertFrom-Json
-$babel_version = Get-LatestDependencyVersion -Package $package_json -Filter 'babel\-'
+$babel_version = Get-LatestDependencyVersion -Package $package_json -Filter 'babel\-(plugin|preset|core)'
 if (([Version]$package_json.version) -ge $babel_version) {
   Write-Output ('Current version ({0}) is the latest' -f $package_json.version)
   Exit
