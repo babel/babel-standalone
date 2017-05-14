@@ -18,7 +18,7 @@ job('babel-standalone-update') {
   }
   triggers {
     urlTrigger {
-      cron 'H/15 * * * *'
+      cron 'H/30 * * * *'
       url('https://babel-standalone.dan.cx/latest-babel-version') {
         inspection 'change'
       }
@@ -41,6 +41,8 @@ job('babel-standalone-update') {
     git {
       branch 'origin', 'master'
       pushOnlyIfSuccess
+    }
+    gitHubIssueNotifier {
     }
   }
 }
