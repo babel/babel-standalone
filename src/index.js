@@ -257,7 +257,7 @@ export const version = VERSION;
 // Listen for load event if we're in a browser and then kick off finding and
 // running of scripts with "text/babel" type.
 if (typeof window !== 'undefined' && window && window.addEventListener) {
-  window.addEventListener('DOMContentLoaded', transformScriptTags, false);
+  window.addEventListener('DOMContentLoaded', () => transformScriptTags(), false);
 }
 
 /**
@@ -274,4 +274,3 @@ export function transformScriptTags(scriptTags) {
 export function disableScriptTags() {
   window.removeEventListener('DOMContentLoaded', transformScriptTags);
 }
-

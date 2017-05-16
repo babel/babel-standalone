@@ -184,12 +184,9 @@ function loadScripts(transformFn, scripts) {
  * Run script tags with type="text/jsx".
  * @param {Array} scriptTags specify script tags to run, run all in the <head> if not given
  */
-export function runScripts(transformFn, scriptTags) {
-  let scripts
+export function runScripts(transformFn, scripts) {
   headEl = document.getElementsByTagName('head')[0];
-  if(scriptTags) {
-    scripts = scriptTags
-  } else {
+  if (!scripts) {
     scripts = document.getElementsByTagName('script');
   }
 
