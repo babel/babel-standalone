@@ -72,7 +72,7 @@ export function transformFromAst(ast, code, options) {
 }
 export const availablePlugins = {};
 export const availablePresets = {};
-
+export const buildExternalHelpers = Babel.buildExternalHelpers;
 /**
  * Registers a named plugin for use with Babel.
  */
