@@ -9,12 +9,12 @@ const uglify = require('gulp-uglify');
 function webpackBuild(filename, libraryName, version) {
   const config = {
     module: {
-      loaders: [
+      rules: [
         {
           //exclude: /node_modules/,
           test: /\.js$/,
-          loader: 'babel',
-          query: {
+          loader: 'babel-loader',
+          options: {
             // Some of the node_modules may have their own "babel" section in
             // their project.json (or a ".babelrc" file). We need to ignore
             // those as we're using our own Babel options.
@@ -22,10 +22,6 @@ function webpackBuild(filename, libraryName, version) {
             presets: ['es2015', 'stage-0'],
           }
         },
-        {
-          test: /\.json$/,
-          loader: 'json'
-        }
       ]
     },
     node: {
@@ -55,8 +51,7 @@ function webpackBuild(filename, libraryName, version) {
         /..\/..\/package/,
         '../../../../src/babel-package-shim'
       ),
-      new webpack.optimize.OccurenceOrderPlugin(),
-      new webpack.optimize.DedupePlugin()
+      new webpack.optimize.ModuleConcatenationPlugin(),
     ]
   };
 
@@ -67,7 +62,7 @@ function webpackBuild(filename, libraryName, version) {
       'babel-standalone': 'Babel',
     };
   }
-  return webpackStream(config);
+  return webpackStream(config, webpack);
 }
 
 const minifyAndRename = lazypipe()
