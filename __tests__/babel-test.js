@@ -87,7 +87,7 @@ describe('babel-standalone', () => {
       {plugins: [['transform-es2015-template-literals', {spec: true}]]}
     ).code;
     expect(output).toBe(
-      '"" + String(x);'
+      '"".concat(x);' // https://github.com/babel/babel/pull/5791
     );
   })
 
