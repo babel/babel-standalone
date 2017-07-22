@@ -99,6 +99,6 @@ If you want to manually upgrade the Babel version used by babel-standalone (or b
 
 1. Upgrade the Babel versions in `package.json`. This can be done with `npm-check-upgrades` (eg. `npm-check-updates -u -a --packageFile ./package.json /^babel\-/`)
 2. Delete `node_modules`, as npm often produces inefficient directory layouts if you upgrade in-place
-3. Run `npm run build`
+3. Run `npm install && npm run build`
 4. Run `npm run test` to ensure it works
 5. Open `examples/example.htm` and ensure it works
