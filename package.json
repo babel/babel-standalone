@@ -117,6 +117,7 @@
     "babel-preset-es2015": "7.0.0-alpha.15",
     "babel-preset-es2016": "7.0.0-alpha.15",
     "babel-preset-es2017": "7.0.0-alpha.15",
+    "babel-preset-env": "2.0.0.alpha7",
     "babel-preset-latest": "6.24.1",
     "babel-preset-react": "7.0.0-alpha.15",
     "babel-preset-stage-0": "7.0.0-alpha.15",
@@ -142,7 +143,7 @@
     "transpile",
     "transpiler"
   ],
-  "author": "Daniel Lo Nigro \u003cdaniel@dan.cx\u003e (http://dan.cx/)",
+  "author": "Daniel Lo Nigro <daniel@dan.cx> (http://dan.cx/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Daniel15/babel-standalone/issues"

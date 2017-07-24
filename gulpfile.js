@@ -70,7 +70,7 @@ const minifyAndRename = lazypipe()
   .pipe(rename, { extname: '.min.js' });
 
 gulp.task('default', ['build']);
-gulp.task('build', ['build-babel', 'build-babili']);
+gulp.task('build', ['build-babel', 'build-babili', 'build-env']);
 
 gulp.task('build-babel', cb => {
   pump([
@@ -88,5 +88,14 @@ gulp.task('build-babili', cb => {
     gulp.dest('packages/babili-standalone/'),
     minifyAndRename(),
     gulp.dest('packages/babili-standalone/'),
+  ], cb);
+});
+gulp.task('build-env', cb => {
+  pump([
+    gulp.src('src/babel-preset-env.js'),
+    webpackBuild('babel-preset-env.js', 'babelPresetEnv', require('./packages/babel-preset-env-standalone/package.json').version),
+    gulp.dest('packages/babel-preset-env-standalone/'),
+    minifyAndRename(),
+    gulp.dest('packages/babel-preset-env-standalone/'),
   ], cb);
 });
