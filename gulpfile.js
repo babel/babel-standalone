@@ -93,9 +93,9 @@ gulp.task('build-babili', cb => {
 gulp.task('build-env', cb => {
   pump([
     gulp.src('src/babel-preset-env.js'),
-    webpackBuild('babel-preset-env.js', 'babelPresetEnv', require('./packages/babel-preset-env-standalone/package.json').version),
-    gulp.dest('packages/babel-preset-env-standalone/'),
+    webpackBuild('babel-preset-env.js', 'babelPresetEnv', require('./packages/babel-env-standalone/package.json').version),
+    gulp.dest('packages/babel-env-standalone/'),
     minifyAndRename(),
-    gulp.dest('packages/babel-preset-env-standalone/'),
+    gulp.dest('packages/babel-env-standalone/'),
   ], cb);
 });
