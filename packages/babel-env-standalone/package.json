@@ -21,7 +21,7 @@
     "targets",
     "6to5"
   ],
-  "author": "Daniel Lo Nigro <daniel@dan.cx> (http://dan.cx/)",
+  "author": "Daniel Lo Nigro \u003cdaniel@dan.cx\u003e (http://dan.cx/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/babel/babel-standalone/issues"
