@@ -1,0 +1,1 @@
+export { availablePlugins as default } from 'babel-standalone';
