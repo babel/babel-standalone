@@ -50,11 +50,7 @@ describe('babel-standalone', () => {
       {presets: ['react']}
     ).code;
     expect(output).toBe(
-      'const someDiv = React.createElement(\n' +
-      '  "div",\n' +
-      '  null,\n' +
-      '  getMessage()\n' +
-      ');'
+      'const someDiv = React.createElement("div", null, getMessage());'
     );
   });
 
