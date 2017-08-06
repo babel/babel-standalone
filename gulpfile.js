@@ -48,6 +48,10 @@ function webpackBuild(filename, libraryName, version) {
         'debug/src/browser'
       ),
       new webpack.NormalModuleReplacementPlugin(
+        /\.\/available-plugins/,
+        require.resolve('./src/available-plugins')
+      ),
+      new webpack.NormalModuleReplacementPlugin(
         /..\/..\/package/,
         '../../../../src/babel-package-shim'
       ),
