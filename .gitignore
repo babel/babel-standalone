@@ -2,6 +2,9 @@
 /babel.min.js
 packages/babili-standalone/babili.js
 packages/babili-standalone/babili.min.js
+packages/babel-env-standalone/babel-preset-env.js
+packages/babel-env-standalone/babel-preset-env.min.js
+
 site/vendor
 
 # Logs

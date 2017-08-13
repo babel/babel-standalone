@@ -1,0 +1,30 @@
+{
+  "name": "babel-env-standalone",
+  "version": "2.0.0-alpha.15",
+  "description": "Standalone build of babel-preset-env for use in non-Node.js environments",
+  "main": "babel-preset-env.js",
+  "files": [
+    "babel-preset-env.js",
+    "babel-preset-env.min.js",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/babel/babel-standalone.git"
+  },
+  "keywords": [
+    "babel-preset",
+    "babel-standalone",
+    "babel-env-standalone",
+    "babel-preset-env-standalone",
+    "babel",
+    "targets",
+    "6to5"
+  ],
+  "author": "Daniel Lo Nigro \u003cdaniel@dan.cx\u003e (http://dan.cx/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/babel/babel-standalone/issues"
+  },
+  "homepage": "https://babel-standalone.dan.cx"
+}

@@ -48,6 +48,10 @@ function webpackBuild(filename, libraryName, version) {
         'debug/src/browser'
       ),
       new webpack.NormalModuleReplacementPlugin(
+        /\.\/available-plugins/,
+        require.resolve('./src/available-plugins')
+      ),
+      new webpack.NormalModuleReplacementPlugin(
         /..\/..\/package/,
         '../../../../src/babel-package-shim'
       ),
@@ -70,7 +74,7 @@ const minifyAndRename = lazypipe()
   .pipe(rename, { extname: '.min.js' });
 
 gulp.task('default', ['build']);
-gulp.task('build', ['build-babel', 'build-babili']);
+gulp.task('build', ['build-babel', 'build-babili', 'build-env']);
 
 gulp.task('build-babel', cb => {
   pump([
@@ -88,5 +92,14 @@ gulp.task('build-babili', cb => {
     gulp.dest('packages/babili-standalone/'),
     minifyAndRename(),
     gulp.dest('packages/babili-standalone/'),
+  ], cb);
+});
+gulp.task('build-env', cb => {
+  pump([
+    gulp.src('src/babel-preset-env.js'),
+    webpackBuild('babel-preset-env.js', 'babelPresetEnv', require('./packages/babel-env-standalone/package.json').version),
+    gulp.dest('packages/babel-env-standalone/'),
+    minifyAndRename(),
+    gulp.dest('packages/babel-env-standalone/'),
   ], cb);
 });
