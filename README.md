@@ -1,3 +1,5 @@
+# `babel-standalone` is now part of `babel`! Go [check it out](https://github.com/babel/babel/tree/master/packages/babel-standalone) :warning::warning::warning::warning:
+
 babel-standalone
 ================
 
