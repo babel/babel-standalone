@@ -61,7 +61,7 @@ function webpackBuild(filename, libraryName, version) {
         '../../../../src/babel-package-shim'
       ),
       new webpack.optimize.ModuleConcatenationPlugin(),
-    ].filter(Boolean)
+    ]
   };
 
   if (libraryName !== 'Babel') {
