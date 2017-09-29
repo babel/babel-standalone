@@ -117,7 +117,7 @@
     "babel-preset-es2015": "7.0.0-alpha.18",
     "babel-preset-es2016": "7.0.0-alpha.18",
     "babel-preset-es2017": "7.0.0-alpha.18",
-    "babel-preset-env": "2.0.0-alpha.18",
+    "babel-preset-env": "2.0.0-beta.2",
     "babel-preset-latest": "6.24.1",
     "babel-preset-react": "7.0.0-alpha.18",
     "babel-preset-stage-0": "7.0.0-alpha.18",
