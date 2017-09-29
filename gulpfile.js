@@ -39,6 +39,7 @@ function webpackBuild(filename, libraryName, version) {
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': '"production"',
+        'process.env': JSON.stringify({ NODE_ENV: "production" }),
         BABEL_VERSION: JSON.stringify(require('babel-core/package.json').version),
         VERSION: JSON.stringify(version),
       }),
@@ -52,11 +53,15 @@ function webpackBuild(filename, libraryName, version) {
         require.resolve('./src/available-plugins')
       ),
       new webpack.NormalModuleReplacementPlugin(
+        /caniuse\-lite\/data\/regions\/.+/,
+        require.resolve('./src/caniuse-lite-regions')
+      ),
+      new webpack.NormalModuleReplacementPlugin(
         /..\/..\/package/,
         '../../../../src/babel-package-shim'
       ),
       new webpack.optimize.ModuleConcatenationPlugin(),
-    ]
+    ].filter(Boolean)
   };
 
   if (libraryName !== 'Babel') {
